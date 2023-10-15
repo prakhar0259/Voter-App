@@ -11,41 +11,33 @@ import com.repository.CandidateRepository;
 
 @Service
 public class CandidateService {
-	
-	@Autowired
-	private CandidateRepository cndrepo;
-	
-	
-	public void addCandidate(Candidate cnd)
-	{
-		cndrepo.save(cnd);
-	}
-	
-	public List<Candidate> getAllCandidates()
-	{
-		return cndrepo.findAll();
-	}
 
-	public Candidate getCandidateById(int id)
-	{
-		Optional<Candidate> cnd = cndrepo.findById(id);
-		if(cnd.isPresent())
-		{
-			return cnd.get();
-		}
-		return cnd.get();
-	}
-	
-	
-	public void deleteCandidate(int id)
-	{
-		cndrepo.deleteById(id);
-	}
-	
-	public Candidate getCandByUser(String email)
-	{
-		return cndrepo.getCandByUser(email);
-	}
-	
-	
+    private final CandidateRepository cndrepo;
+
+    @Autowired
+    public CandidateService(CandidateRepository cndrepo) {
+        this.cndrepo = cndrepo;
+    }
+
+    public void addCandidate(Candidate candidate) {
+        cndrepo.save(candidate);
+    }
+
+    public List<Candidate> getAllCandidates() {
+        return cndrepo.findAll();
+    }
+
+    public Candidate getCandidateById(int id) {
+        Optional<Candidate> candidate = cndrepo.findById(id);
+        return candidate.orElseThrow(() -> new RuntimeException("Candidate not found with id: " + id));
+    }
+
+    public void deleteCandidate(int id) {
+        cndrepo.deleteById(id);
+    }
+
+    public Candidate getCandidateByUser(String email) {
+        return cndrepo.getCandidateByUser(email);
+    }
+
 }
