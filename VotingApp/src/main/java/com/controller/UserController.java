@@ -30,7 +30,7 @@ public class UserController {
 		
 		
 		String status = "Not Voted";
-		if (cndServ.getCandByUser(userName) != null) {
+		if (cndServ.getCandidateByUser(userName) != null) {
 			
 			status = "Voted";
 		}

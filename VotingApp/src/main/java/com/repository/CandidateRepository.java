@@ -10,7 +10,6 @@ public interface CandidateRepository extends JpaRepository<Candidate, Integer>{
 
 	
 	@Query("select v from Candidate v where v.candidate1 = :email or v.candidate2 = :email or v.candidate3 = :email or v.candidate4 = :email")
-	public Candidate getCandByUser(@Param("email")String email);
-	
-	
+	public Candidate getCandidateByUser(@Param("email")String email);
+
 }

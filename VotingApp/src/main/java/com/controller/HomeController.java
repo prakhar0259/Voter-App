@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import com.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,7 +28,10 @@ public class HomeController {
 	
 	@Autowired
 	private UserService userserv;
-	
+
+	@Autowired
+	private EmailService emailService;
+
 	@Autowired
 	private RoleService roleserv;
 
@@ -50,7 +54,7 @@ public class HomeController {
 	
 	
 	
-	
+
 	@GetMapping("/register")
 	public String register(Model m)
 	{
@@ -97,6 +101,7 @@ public class HomeController {
 		
 			user.setRoles(r);
 			 userserv.addUser(user);
+			 emailService.sendWelcomeMail(user.getName(),user.getEmail());
 			
 			session.setAttribute("msg","Registration Successful...");
 			

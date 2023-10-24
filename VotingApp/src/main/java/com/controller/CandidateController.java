@@ -4,6 +4,9 @@ import java.security.Principal;
 
 import javax.servlet.http.HttpSession;
 
+import com.model.User;
+import com.service.EmailService;
+import com.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +21,13 @@ public class CandidateController {
 
     @Autowired
     private CandidateService cndServ;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private EmailService emailService;
+
 
     @PostMapping("/addcandidate")
     public String addCandidate(@RequestParam("candidate") String selectedCandidate,
@@ -50,6 +60,8 @@ public class CandidateController {
             }
 
             cndServ.addCandidate(cnd);
+            User user=userService.getUserByEmail(email);
+            emailService.sendVoteConfirmation(user.getName(),user.getEmail());
             session.setAttribute("msg", "Successfully Voted...");
         }
 
