@@ -24,7 +24,9 @@ public class User {
 	private String name;
 	private String password;
 	private String email;
-	private int phone;
+
+//	Always prefer phone number to be in String to void Casting error
+	private String phone;
 	
 	@ManyToMany(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
 	@JoinTable(
@@ -39,7 +41,7 @@ public class User {
 		
 	}
 	
-public User(int id,String name, String password, String email, int phone, List<Role> roles) {
+public User(int id,String name, String password, String email, String phone, List<Role> roles) {
 		this.id = id;
 		this.name = name;
 		this.password = password;
@@ -48,7 +50,7 @@ public User(int id,String name, String password, String email, int phone, List<R
 		this.roles = roles;
 	}
 
-	public User(String name, String password, String email, int phone, List<Role> roles) {
+	public User(String name, String password, String email, String phone, List<Role> roles) {
 		
 		this.name = name;
 		this.password = password;
@@ -89,11 +91,11 @@ public User(int id,String name, String password, String email, int phone, List<R
 		this.email = email;
 	}
 
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 

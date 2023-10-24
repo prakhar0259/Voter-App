@@ -53,13 +53,13 @@ public class AdminController {
 
 		List<Candidate> listc = cndServ.getAllCandidates();
 		for (Candidate v : listc) {
-			if (!v.getCandidate1().equals(""))
+			if (v.getCandidate1()!=null && !v.getCandidate1().isEmpty())
 				c1++;
-			if (!v.getCandidate2().equals(""))
+			if (v.getCandidate2()!=null && !v.getCandidate2().isEmpty())
 				c2++;
-			if (!v.getCandidate3().equals(""))
+			if (v.getCandidate3()!=null && !v.getCandidate3().isEmpty())
 				c3++;
-			if (!v.getCandidate4().equals(""))
+			if (v.getCandidate4()!=null && !v.getCandidate4().isEmpty())
 				c4++;
 		}
 
@@ -167,13 +167,13 @@ public class AdminController {
 							List<Candidate> listc = cndServ.getAllCandidates();
 							for(Candidate v : listc)
 							{
-								if(!v.getCandidate1().equals(""))
+								if(v.getCandidate1()!=null && !v.getCandidate1().isEmpty())
 									c1= c1 + 1;
-								if(!v.getCandidate2().equals(""))
+								if(v.getCandidate2()!=null && !v.getCandidate2().isEmpty())
 									c2= c2 + 1;
-								if(!v.getCandidate3().equals(""))
+								if(v.getCandidate3()!=null && !v.getCandidate3().isEmpty())
 									c3= c3 + 1;
-								if(!v.getCandidate4().equals(""))
+								if(v.getCandidate4()!=null && !v.getCandidate4().isEmpty())
 									c4= c4 + 1;
 							}
 							
